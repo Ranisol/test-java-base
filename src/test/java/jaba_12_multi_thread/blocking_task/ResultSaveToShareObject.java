@@ -1,5 +1,7 @@
 package jaba_12_multi_thread.blocking_task;
 
+import org.junit.jupiter.api.Test;
+
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
@@ -15,6 +17,7 @@ public class ResultSaveToShareObject {
         };
     }
 
+    @Test
     public void run() {
         SharedValue sharedValue = new SharedValue();
         ExecutorService executorService = Executors.newFixedThreadPool(

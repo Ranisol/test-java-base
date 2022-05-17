@@ -1,5 +1,7 @@
 package jaba_12_multi_thread.blocking_task;
 
+import org.junit.jupiter.api.Test;
+
 import java.util.concurrent.*;
 
 public class GetResultOrderOfCompletion {
@@ -29,6 +31,7 @@ public class GetResultOrderOfCompletion {
         };
     }
 
+    @Test
     public void run() {
         ExecutorService executorService = Executors.newFixedThreadPool(
                 Runtime.getRuntime().availableProcessors()

@@ -1,11 +1,14 @@
 package jaba_12_multi_thread.callback_task;
 
+import org.junit.jupiter.api.Test;
+
 import java.nio.channels.CompletionHandler;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class CallbackTask {
 
+    @Test
     public void run() {
         ExecutorService executorService = Executors.newFixedThreadPool(
                 Runtime.getRuntime().availableProcessors()

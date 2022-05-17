@@ -1,5 +1,7 @@
 package jaba_12_multi_thread.run_task_method;
 
+import org.junit.jupiter.api.Test;
+
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -8,7 +10,8 @@ import java.util.concurrent.ThreadPoolExecutor;
  * 스레드가 강제종료되면서 스레드도 종료되고, 다음애는 새로운 스레드 사용함
  * */
 public class RunTaskWithExecute {
-    static public void run() {
+    @Test
+    void run() {
         ExecutorService executorService = Executors.newFixedThreadPool(2);
         for(int i = 0; i < 10; i ++) {
             executorService.execute(() -> {
