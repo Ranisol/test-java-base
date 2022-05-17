@@ -1,4 +1,4 @@
-package jaba_12_multi_thread.callback_task;
+package multi_thread.callback_task;
 
 import org.junit.jupiter.api.Test;
 

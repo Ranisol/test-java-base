@@ -1,4 +1,4 @@
-package jaba_12_multi_thread.run_task_method;
+package multi_thread.run_task_method;
 
 import org.junit.jupiter.api.Test;
 

@@ -1,4 +1,4 @@
-package jaba_12_multi_thread.blocking_task;
+package multi_thread.blocking_task;
 
 import org.junit.jupiter.api.Test;
 
