@@ -2,6 +2,13 @@ plugins {
 	id 'java'
 }
 
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+group = 'jaba'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '15'
 

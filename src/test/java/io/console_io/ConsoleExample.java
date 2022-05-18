@@ -1,4 +1,4 @@
-package io.input_output_stream;
+package io.console_io;
 
 import java.io.Console;
 
