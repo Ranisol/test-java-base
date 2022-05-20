@@ -7,6 +7,8 @@ import java.io.OutputStream;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.nio.charset.StandardCharsets;
+import java.util.Scanner;
 
 class ProcessDataServerExample {
     public static void main(String[] args) {
@@ -24,12 +26,12 @@ class ProcessDataServerExample {
                 InputStream is = new BufferedInputStream(socket.getInputStream());
                 byte[] isData = new byte[100];
                 int readDataLen = is.read(isData);
-                String message = new String(isData, 0,readDataLen, "UTF-8");
+                String message = new String(isData, 0,readDataLen, StandardCharsets.UTF_8);
                 System.out.println("데이터 받기: " + message);
 
                 // 응답
                 OutputStream os = new BufferedOutputStream(socket.getOutputStream());
-                byte[] returnMessage = "하이".getBytes("UTF-8");
+                byte[] returnMessage = "하이".getBytes(StandardCharsets.UTF_8);
                 os.write(returnMessage);
                 os.flush();
                 System.out.println("데이터 보내기 성공");
@@ -53,7 +55,8 @@ class SendAndGetDataClientExample {
 
             // 요청
             OutputStream os = new BufferedOutputStream(socket.getOutputStream());
-            byte[] sendMessage = "안녕".getBytes("UTF-8");
+            Scanner scanner = new Scanner(System.in);
+            byte[] sendMessage = scanner.nextLine().getBytes("UTF-8");
             os.write(sendMessage);
             os.flush();
             System.out.println("보내기 성공");
