@@ -1,4 +1,4 @@
-package io_non_blocking;
+package nio;
 
 import java.net.URI;
 import java.nio.file.FileSystem;

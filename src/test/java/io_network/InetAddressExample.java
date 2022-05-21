@@ -1,4 +1,4 @@
-package network.ip_adress;
+package io_network;
 
 import org.junit.jupiter.api.Test;
 

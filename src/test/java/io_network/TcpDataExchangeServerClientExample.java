@@ -1,4 +1,4 @@
-package network.tcp;
+package io_network;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;

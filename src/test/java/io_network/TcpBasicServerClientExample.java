@@ -1,4 +1,4 @@
-package network.tcp;
+package io_network;
 
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;

@@ -1,4 +1,4 @@
-package io_non_blocking;
+package nio;
 
 import java.io.IOException;
 import java.nio.file.*;
