@@ -36,8 +36,13 @@ class Client3 {
 
 class ChatServerExample {
 
+    // 채팅 클라이언트 소켓 관리하는 스레드 풀
     ExecutorService executorService;
+
+    // 요청을 받고 소켓을 얻는 서버 소켓
     ServerSocket serverSocket;
+
+    // 소켓을 갖고 있는 커넥션들 (스레드 안전하지 않은 리스트)
     List<Connect> connects = new ArrayList<>(10);
 
     void startServer() throws IOException {
@@ -46,7 +51,7 @@ class ChatServerExample {
         serverSocket = new ServerSocket();
         serverSocket.bind(new InetSocketAddress("localhost", 8080));
         while (true) {
-            Socket socket = serverSocket.accept();
+            Socket socket = serverSocket.accept(); // 새로운 요청 발생까지 block
             System.out.println("연결 발생 " + socket.toString());
             Connect connect = new Connect(socket);
             this.connects.add(connect);
@@ -58,11 +63,11 @@ class ChatServerExample {
         Socket socket;
         Connect(Socket socket) {
             this.socket = socket;
-            // 특정 소켓에 대한 연결 유지
+            // 특정 연결을 스레드 풀에 넣고 연결 유지
             executorService.submit(() -> {
                 while (true) {
                     byte[] bytes = new byte[100];
-                    InputStream is = socket.getInputStream();
+                    InputStream is = socket.getInputStream(); // 해당 소켓에 input 올때까지 block
                     int readByteCount = is.read(bytes);
 
                     // 정상 close
@@ -84,7 +89,7 @@ class ChatServerExample {
     }
 }
 
-
+// 가상 클라이언트
 class MockClient {
 
     String clientName;
