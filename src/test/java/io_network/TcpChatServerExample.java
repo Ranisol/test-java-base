@@ -1,5 +1,7 @@
 package io_network;
 
+import multi_thread.run_task_method.RunTaskWithSubmit;
+
 import java.io.*;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
@@ -12,7 +14,7 @@ import java.util.concurrent.Executors;
 
 class MainServer {
     public static void main(String[] args) throws IOException {
-        new ChatServerExample().startServer();
+        new BlockTcpChatServerExample().startServer();
     }
 }
 
@@ -34,9 +36,9 @@ class Client3 {
     }
 }
 
-class ChatServerExample {
+class BlockTcpChatServerExample {
 
-    // 채팅 클라이언트 소켓 관리하는 스레드 풀
+    /** 채팅 클라이언트 소켓 관리하는 스레드 풀 {@link RunTaskWithSubmit} */
     ExecutorService executorService;
 
     // 요청을 받고 소켓을 얻는 서버 소켓
@@ -110,7 +112,7 @@ class MockClient {
                 Scanner scanner = new Scanner(System.in);
                 String message = this.clientName + ": " + scanner.nextLine();
                 try {
-                    OutputStream outputStream = socket.getOutputStream();
+                    OutputStream outputStream = socket.getOutputStream(); // 해당 소켓에 output 올때까지 block
                     outputStream.write(message.getBytes(StandardCharsets.UTF_8));
                     outputStream.flush();
                 } catch (IOException e) {
@@ -125,7 +127,7 @@ class MockClient {
             while (true) {
                 try {
                     byte[] bytes = new byte[100];
-                    InputStream inputStream = socket.getInputStream();
+                    InputStream inputStream = socket.getInputStream(); // 해당 소켓에 input 올때까지 block
                     int readLen = inputStream.read(bytes);
                     if(readLen == -1) break;
                     String message = new String(bytes, 0, readLen, StandardCharsets.UTF_8);
